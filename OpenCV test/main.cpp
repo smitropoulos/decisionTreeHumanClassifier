@@ -1,4 +1,13 @@
 
+/*
+
+ ##TODO:add options to write sub images or display them.
+ add something to count the time taken
+ add CART from shark
+ 
+*/
+
+
 #include "opencv2/opencv.hpp"
 #include <iostream>
 #include "imageLoader.hpp"
