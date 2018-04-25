@@ -1,5 +1,7 @@
-
 #include "imageProcessor.hpp"
+#include <math.h>       /* atan */
+
+#define PI 3.14159265
 
 imageProcessor::imageProcessor(){}
 
@@ -104,4 +106,29 @@ cv::Mat imageProcessor::removePadding(cv::Mat im){
 	cv::Mat croppedImage = im (myROI);
 
 	return croppedImage;
+}
+
+int imageProcessor::autoRotationAngle(cv::Mat im){
+	bool flag = false;
+
+	static int y=0;
+	static int x=0;
+	for (;y<im.rows;++y){
+		for(;x<im.cols;++x){
+			if(im.at<int>(x,y)>0){
+				flag=true;
+				break;
+			}
+		}
+		if (flag){
+			break;
+		}
+	}
+
+	float xDiff = im.cols/2.0 - x;
+	float yDiff = im.rows/2.0 - y;
+  	float tanInRads = atan2(xDiff,yDiff);
+	int angle = tanInRads*180/PI;
+
+	return angle;
 }

@@ -17,8 +17,7 @@ public:
 	imageProcessor();
 	std::vector<cv::KeyPoint> blobDetection(cv::Mat &image);
 	cv::Mat removePadding(cv::Mat image);
-
-
+	int autoRotationAngle(cv::Mat im);
 };
 
 
