@@ -33,4 +33,3 @@ int main(){
 	waitKey(0);                                      	// Wait for a keystroke in the window
 
 }
-

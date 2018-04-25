@@ -10,6 +10,7 @@
 		7D826A5B208E3D1A009E563B /* imageLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D826A59208E3D1A009E563B /* imageLoader.cpp */; };
 		7D826A5E208F88AD009E563B /* imageProcessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D826A5C208F88AD009E563B /* imageProcessor.cpp */; };
 		7D8D96D42078BE6D0091EB78 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D8D96D32078BE6D0091EB78 /* main.cpp */; };
+		7DCA19C52090C87E00E61955 /* bgsubcnt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7DCA19C42090C87E00E61955 /* bgsubcnt.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +32,8 @@
 		7D826A5D208F88AD009E563B /* imageProcessor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = imageProcessor.hpp; sourceTree = "<group>"; };
 		7D8D96D02078BE6D0091EB78 /* OpenCV test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "OpenCV test"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D8D96D32078BE6D0091EB78 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		7DCA19C42090C87E00E61955 /* bgsubcnt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bgsubcnt.cpp; sourceTree = "<group>"; };
+		7DCA19C62090C88600E61955 /* bgsubcnt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bgsubcnt.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,11 +66,13 @@
 		7D8D96D22078BE6D0091EB78 /* OpenCV test */ = {
 			isa = PBXGroup;
 			children = (
-				7D8D96D32078BE6D0091EB78 /* main.cpp */,
-				7D826A5C208F88AD009E563B /* imageProcessor.cpp */,
-				7D826A5D208F88AD009E563B /* imageProcessor.hpp */,
+				7DCA19C42090C87E00E61955 /* bgsubcnt.cpp */,
+				7DCA19C62090C88600E61955 /* bgsubcnt.h */,
 				7D826A59208E3D1A009E563B /* imageLoader.cpp */,
 				7D826A5A208E3D1A009E563B /* imageLoader.hpp */,
+				7D826A5C208F88AD009E563B /* imageProcessor.cpp */,
+				7D826A5D208F88AD009E563B /* imageProcessor.hpp */,
+				7D8D96D32078BE6D0091EB78 /* main.cpp */,
 			);
 			path = "OpenCV test";
 			sourceTree = "<group>";
@@ -129,6 +134,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D826A5E208F88AD009E563B /* imageProcessor.cpp in Sources */,
+				7DCA19C52090C87E00E61955 /* bgsubcnt.cpp in Sources */,
 				7D826A5B208E3D1A009E563B /* imageLoader.cpp in Sources */,
 				7D8D96D42078BE6D0091EB78 /* main.cpp in Sources */,
 			);

@@ -1,7 +1,5 @@
 #include "imageProcessor.hpp"
-#include <math.h>       /* atan */
-
-#define PI 3.14159265
+#include <math.h>
 
 imageProcessor::imageProcessor(){}
 
@@ -110,7 +108,7 @@ cv::Mat imageProcessor::removePadding(cv::Mat &im){
 
 int imageProcessor::autoRotationAngle(cv::Mat &im){
 	bool flag = false;
-
+	double const PI = 3.14159265;
 	static int y=0;
 	static int x=0;
 	for (;y<im.rows;++y){
@@ -149,17 +147,3 @@ void imageProcessor::rotateNoCrop(cv::Mat &im, cv::Mat &rotIm, double angle){
 
 
 }
-
-void imageProcessor::rotate2D(const cv::Mat & src, cv::Mat & dst, const double degrees)
-{
-	cv::Point2f center(src.cols/2.0, src.rows/2.0);
-	cv::Mat rot = cv::getRotationMatrix2D(center, degrees, 1.0);
-	cv::Rect bbox = cv::RotatedRect(center,src.size(), degrees).boundingRect();
-
-	rot.at<double>(0,2) += bbox.width/2.0 - center.x;
-	rot.at<double>(1,2) += bbox.height/2.0 - center.y;
-
-	cv::warpAffine(src, dst, rot, bbox.size());
-}
-
-
