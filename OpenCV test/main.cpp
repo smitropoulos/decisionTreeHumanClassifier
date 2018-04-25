@@ -3,12 +3,12 @@
 #include <iostream>
 #include "imageLoader.hpp"
 #include "imageProcessor.hpp"
-
+#include "backgroundSubtractor.hpp"
 using namespace std;
 using namespace cv;
 
 using namespace std;
-int main(){
+int main(int argc,char* argv[]){
 
 	imageLoader jpgImages("/Users/stefanosmitropoulos/Developer/Python/OpenCvTest/car/" , "png");
 	std::stack<cv::Mat>  carImages = jpgImages.load(justLoad);
@@ -25,6 +25,8 @@ int main(){
 
 	cv::Mat rotIm;
 	impro.rotateNoCrop(im, rotIm, angle );
+
+	processVideo("/Users/stefanosmitropoulos/Downloads/Video_005/Video_005.avi");
 
 	std::cout<<angle<<std::endl;
 
