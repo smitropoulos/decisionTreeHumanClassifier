@@ -34,9 +34,74 @@ std::vector<cv::KeyPoint> imageProcessor::blobDetection(cv::Mat &image){
 }
 
 
-cv::Mat imageProcessor::removePadding(cv::Mat image){
+cv::Mat imageProcessor::removePadding(cv::Mat im){
 
+	int xsum=0;
+	int top=0;
+	int bot=im.rows;
+	int left=0;
+	int right=im.cols;
 
+	bool flag=false;
 
-	return image;
+	for (int i=0;i<im.rows;++i){
+		for (int j=0;j<im.cols;++j){
+			xsum+=im.at<uchar>(i,j);
+			if (xsum>0){
+				top = i;
+				flag = true;
+				break;
+			}
+		}
+		if (flag){
+			break;
+		}
+	}
+
+	for (int i=0;i<im.rows;++i){
+		for (int j=0;j<im.cols;++j){
+			xsum+=im.at<uchar>(j,i);
+			if (xsum>0){
+				left = i;
+				flag = true;
+				break;
+			}
+		}
+		if (flag){
+			break;
+		}
+	}
+
+	for (int i=im.rows;i>0;--i){
+		for (int j=im.cols;j>0;--j){
+			xsum+=im.at<uchar>(i,j);
+			if (xsum>0){
+				bot = i;
+				flag = true;
+				break;
+			}
+		}
+		if (flag){
+			break;
+		}
+	}
+
+	for (int i=im.rows;i>0;--i){
+		for (int j=im.cols;j>0;--j){
+			xsum+=im.at<uchar>(j,i);
+			if (xsum>0){
+				right = i;
+				flag = true;
+				break;
+			}
+		}
+		if (flag){
+			break;
+		}
+	}
+
+	cv::Rect myROI( left, top, im.cols-left - (im.cols-right) , im.rows-top - (im.rows-bot) );
+	cv::Mat croppedImage = im (myROI);
+
+	return croppedImage;
 }

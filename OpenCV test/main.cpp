@@ -18,25 +18,14 @@ int main(){
 
 	cv::Mat image = imread("sample.jpg",0);
 
-	cv::Mat dst;
-	cv::threshold(image,dst,0, 255, cv::THRESH_OTSU);
-
-		//	int xsum;
-		//	for (int i=0;i<im.rows;++i){
-		//		xsum+=im;
-		//	}
-
-	cout<<image.data<<endl;
-
-	std::cout<<image.rows<<std::endl;
+	cv::Mat im;
+	cv::threshold(image,im,0, 255, cv::THRESH_OTSU);
 
 
-//
-//	namedWindow( "Display window", WINDOW_AUTOSIZE );// Create a window for display.
-//	imshow( "Display window", image);                   // Show our image inside it.
-//
-//	waitKey(0);                                          // Wait for a keystroke in the window
 
+			namedWindow( "Display window", WINDOW_AUTOSIZE );// Create a window for display.
+			imshow( "Display window", im);                   // Show our image inside it.
 
+			waitKey(0);                                          // Wait for a keystroke in the window
 }
 
