@@ -16,9 +16,11 @@ class imageProcessor{
 public:
 	imageProcessor();
 	std::vector<cv::KeyPoint> blobDetection(cv::Mat &image);
-	cv::Mat removePadding(cv::Mat image);
-	int autoRotationAngle(cv::Mat im);
-};
+	cv::Mat removePadding(cv::Mat &image);
+	int autoRotationAngle(cv::Mat &im);
+	void rotateNoCrop(cv::Mat &im, cv::Mat &rotIm, double angle);
+	void rotate2D(const cv::Mat & src, cv::Mat & dst, const double degrees);
 
+};
 
 #endif /* imageProcessor_hpp */

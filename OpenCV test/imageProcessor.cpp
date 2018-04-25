@@ -36,7 +36,7 @@ std::vector<cv::KeyPoint> imageProcessor::blobDetection(cv::Mat &image){
 }
 
 
-cv::Mat imageProcessor::removePadding(cv::Mat im){
+cv::Mat imageProcessor::removePadding(cv::Mat &im){
 
 	int xsum=0;
 	int top=0;
@@ -108,7 +108,7 @@ cv::Mat imageProcessor::removePadding(cv::Mat im){
 	return croppedImage;
 }
 
-int imageProcessor::autoRotationAngle(cv::Mat im){
+int imageProcessor::autoRotationAngle(cv::Mat &im){
 	bool flag = false;
 
 	static int y=0;
@@ -127,8 +127,39 @@ int imageProcessor::autoRotationAngle(cv::Mat im){
 
 	float xDiff = im.cols/2.0 - x;
 	float yDiff = im.rows/2.0 - y;
-  	float tanInRads = atan2(xDiff,yDiff);
+  	float tanInRads = atan2(-xDiff,yDiff);
 	int angle = tanInRads*180/PI;
 
 	return angle;
 }
+
+
+void imageProcessor::rotateNoCrop(cv::Mat &im, cv::Mat &rotIm, double angle){
+
+	{
+	cv::Point2f center(im.cols/2.0, im.rows/2.0);
+	cv::Mat rot = cv::getRotationMatrix2D(center, angle, 1.0);
+	cv::Rect bbox = cv::RotatedRect(center,im.size(), angle).boundingRect();
+
+	rot.at<double>(0,2) += bbox.width/2.0 - center.x;
+	rot.at<double>(1,2) += bbox.height/2.0 - center.y;
+
+	cv::warpAffine(im, rotIm, rot, bbox.size());
+	}
+
+
+}
+
+void imageProcessor::rotate2D(const cv::Mat & src, cv::Mat & dst, const double degrees)
+{
+	cv::Point2f center(src.cols/2.0, src.rows/2.0);
+	cv::Mat rot = cv::getRotationMatrix2D(center, degrees, 1.0);
+	cv::Rect bbox = cv::RotatedRect(center,src.size(), degrees).boundingRect();
+
+	rot.at<double>(0,2) += bbox.width/2.0 - center.x;
+	rot.at<double>(1,2) += bbox.height/2.0 - center.y;
+
+	cv::warpAffine(src, dst, rot, bbox.size());
+}
+
+

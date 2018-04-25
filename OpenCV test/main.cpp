@@ -21,12 +21,15 @@ int main(){
 	cv::Mat im;
 	cv::threshold(image,im,0, 255, cv::THRESH_OTSU);
 
-	auto g=impro.autoRotationAngle(im);
+	auto angle=impro.autoRotationAngle(im);
 
-	std::cout<<g<<std::endl;
+	cv::Mat rotIm;
+	impro.rotateNoCrop(im, rotIm, angle );
+
+	std::cout<<angle<<std::endl;
 
 	namedWindow( "Display window", WINDOW_AUTOSIZE );	// Create a window for display.
-	imshow( "Display window", im);                   	// Show our image inside it.
+	imshow( "Display window", rotIm);                   // Show our image inside it.
 	waitKey(0);                                      	// Wait for a keystroke in the window
 
 }
