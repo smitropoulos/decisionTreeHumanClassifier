@@ -23,7 +23,7 @@ std::vector<cv::KeyPoint> imageProcessor::blobDetection(cv::Mat &image){
 	params.maxConvexity=1;
 
 
-		// Set up detector with params
+		// Set up detector with the above parameters. As of now there is not need to alter them.
 	cv::Ptr<cv::SimpleBlobDetector> blobDetector = cv::SimpleBlobDetector::create(params);
 
 		// Detect blobs.
@@ -35,6 +35,9 @@ std::vector<cv::KeyPoint> imageProcessor::blobDetection(cv::Mat &image){
 
 
 cv::Mat imageProcessor::removePadding(cv::Mat &im){
+	/*
+	 Calculate the black borders of a blob and re-set the borders of the blob to not include them. (aka crop)
+	 */
 
 	int xsum=0;
 	int top=0;
@@ -107,6 +110,10 @@ cv::Mat imageProcessor::removePadding(cv::Mat &im){
 }
 
 int imageProcessor::autoRotationAngle(cv::Mat &im){
+
+	/*
+	 Calculate the rotation angle needed. Assuming the object of interest resembles a human silhouette, the uppermost non-zero point will be the top of the head. With this in mind, the human to be upright, his head needs to be alligned to the y'y axis. This is exactly what this method does, calculates that angle.
+	 */
 	bool flag = false;
 	double const PI = 3.14159265;
 	static int y=0;
@@ -125,7 +132,7 @@ int imageProcessor::autoRotationAngle(cv::Mat &im){
 
 	float xDiff = im.cols/2.0 - x;
 	float yDiff = im.rows/2.0 - y;
-  	float tanInRads = atan2(-xDiff,yDiff);
+	float tanInRads = atan2(-xDiff,yDiff);
 	int angle = tanInRads*180/PI;
 
 	return angle;
@@ -133,6 +140,8 @@ int imageProcessor::autoRotationAngle(cv::Mat &im){
 
 
 void imageProcessor::rotateNoCrop(cv::Mat &im, cv::Mat &rotIm, double angle){
+	/*
+	 Rotate the image without cropping. First the transformation(rotation) matrix is calculated, then a new, bigger cv::Mat is constructed.*/
 
 	{
 	cv::Point2f center(im.cols/2.0, im.rows/2.0);
