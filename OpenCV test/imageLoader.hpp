@@ -2,7 +2,6 @@
 #ifndef imageLoader_hpp
 #define imageLoader_hpp
 
-#include <stdio.h>
 #include <string>
 #include <stack>
 #include "opencv2/opencv.hpp"

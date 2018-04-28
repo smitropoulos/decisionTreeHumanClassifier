@@ -17,11 +17,8 @@ std::stack<cv::Mat> imageLoader::load(imageLoaderOptions opt){
 		for (size_t k=0; k<nameVector.size(); ++k)
 			{
 			cv::Mat im = cv::imread(nameVector[k],1);
-
-			cv::resize(im, im,cv::Size(),0.1,0.1);
-
+			//cv::resize(im, im,cv::Size(),0.1,0.1);	//enable to resize images to 1/10th of originals
 			if (im.empty()) continue; //only proceed if sucsessful
-
 			if (opt==0){
 				dataStack.push(im);
 			}
