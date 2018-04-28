@@ -12,8 +12,10 @@ enum imageLoaderOptions {justLoad, process};
 class imageLoader
 {
 public:
-	imageLoader(std::string folder_path,std::string ext);
+	imageLoader(std::string folder_path,std::string ext,char classNumber);
 	std::stack<cv::Mat> load(imageLoaderOptions opt);
+	char m_classNumber;
+
 private:
 	std::string m_path;
 	std::string m_ext;

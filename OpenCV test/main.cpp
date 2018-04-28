@@ -1,46 +1,58 @@
-
-/*
-
- ##TODO:add options to write sub images or display them.
- add something to count the time taken
- add CART
- 
-*/
-
-
 #include "opencv2/opencv.hpp"
 #include <iostream>
 #include "imageLoader.hpp"
 #include "imageProcessor.hpp"
 #include "backgroundSubtractor.hpp"
+#include <iostream>
+#include <fstream>
+
 using namespace std;
 using namespace cv;
 
-using namespace std;
-int main(int argc,char* argv[]){
 
-	imageLoader jpgImages("/Users/stefanosmitropoulos/Developer/Python/OpenCvTest/car/" , "png");
-	std::stack<cv::Mat>  carImages = jpgImages.load(justLoad);
+int main(int argc,const char* argv[]){
 
+	if(argc!=5) {
+		cout << "Please follow this format. @args [path to images] [extension of images] [class number] [results file name]\n";
+		return 0;
+	}
+
+		//initialise an imageLoader and load images into a stack
+	imageLoader images(argv[1] , argv[2], *argv[3]);
+	std::stack<cv::Mat>  carImagesStack = images.load(justLoad);
+		//initiliase an image processor.
 	imageProcessor impro;
-	impro.blobDetection(carImages.top());
 
-	cv::Mat image = imread("sample.jpg",0);
+	ofstream file(argv[4]);
+	if (file.is_open()){
 
-	cv::Mat im;
-	cv::threshold(image,im,0, 255, cv::THRESH_OTSU);
+		file << "Data\tClass"<<endl;	//headers
 
-	auto angle=impro.autoRotationAngle(im);
+		while(!carImagesStack.empty()){
 
-	cv::Mat rotIm;
-	impro.rotateNoCrop(im, rotIm, angle );
+			auto tempImage=carImagesStack.top();	//clarity mostly. Eitherway there is no data copy here
 
-	processVideo("/Users/stefanosmitropoulos/Downloads/Video_005/Video_005.avi");
+			impro.removePadding(tempImage);
+			impro.rotateNoCrop(tempImage, tempImage, impro.autoRotationAngle(tempImage));
+			tempImage=tempImage.reshape(1,1);	//reshaping the image to vector form. (1 row, row*cols columns)
 
-	std::cout<<angle<<std::endl;
-
-	namedWindow( "Display window", WINDOW_AUTOSIZE );	// Create a window for display.
-	imshow( "Display window", rotIm);                   // Show our image inside it.
-	waitKey(0);                                      	// Wait for a keystroke in the window
-
+				//Access all the elements of the mat.data
+			for (int i=0;i<tempImage.cols;i++){
+				if(static_cast<int>(*carImagesStack.top().data++) > 1){ //pseudo thresholding too.
+					file<<1;
+				}else{
+					file<<0;
+				}
+			}
+			file<<'\t';
+			file<<images.m_classNumber;
+			
+			carImagesStack.pop();
+		}
+		file.close();
+	}
+	else{
+		cout<<"Failed to open file. Please make sure the output file is not open by any other program and try again.\n"<<endl;
+		exit(-1);
+	}
 }

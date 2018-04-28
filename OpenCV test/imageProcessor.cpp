@@ -65,7 +65,7 @@ cv::Mat imageProcessor::removePadding(cv::Mat &im){
 		for (int j=0;j<im.cols;++j){
 			xsum+=im.at<uchar>(j,i);
 			if (xsum>0){
-				left = i;
+				left = j;
 				flag = true;
 				break;
 			}
@@ -93,7 +93,7 @@ cv::Mat imageProcessor::removePadding(cv::Mat &im){
 		for (int j=im.cols;j>0;--j){
 			xsum+=im.at<uchar>(j,i);
 			if (xsum>0){
-				right = i;
+				right = j;
 				flag = true;
 				break;
 			}
@@ -153,6 +153,5 @@ void imageProcessor::rotateNoCrop(cv::Mat &im, cv::Mat &rotIm, double angle){
 
 	cv::warpAffine(im, rotIm, rot, bbox.size());
 	}
-
 
 }
