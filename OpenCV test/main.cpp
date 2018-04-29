@@ -6,6 +6,7 @@
 #include <iostream>
 #include <fstream>
 #include <random>
+#include <string>
 
 using namespace std;
 using namespace cv;
@@ -40,12 +41,15 @@ int main(int argc,const char* argv[]){
 		//initiliase an image processor.
 	imageProcessor impro;
 
-	ofstream file(argv[4]);
-	ofstream file2(static_cast<string>(argv[4])+"Test");
+	std::string filename = argv[4];
+
+	ofstream file(filename+".txt");
+	ofstream file2(filename+"Test"+".txt");
 
 	if (file.is_open() && file2.is_open()){
 
 		file << "Data\tClass"<<endl;	//headers
+		file2 << "Data\tClass"<<endl;	//headers
 
 		while(!carImagesStack.empty()){
 
