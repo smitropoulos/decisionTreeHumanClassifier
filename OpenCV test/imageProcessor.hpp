@@ -8,10 +8,12 @@
 class imageProcessor{
 public:
 	imageProcessor();
-	std::vector<cv::KeyPoint> blobDetection(cv::Mat &image);
+	std::vector<cv::KeyPoint> blobDetection(cv::Mat &image , int minArea);
 	cv::Mat removePadding(cv::Mat &image);
 	int autoRotationAngle(cv::Mat &im);
 	void rotateNoCrop(cv::Mat &im, cv::Mat &rotIm, double angle);
+	
+	void blobExtractor(cv::Mat image,std::vector<cv::KeyPoint> keypoints, std::string pathToSave, std::string naming);
 
 };
 

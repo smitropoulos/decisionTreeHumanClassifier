@@ -1,15 +1,19 @@
 #include "imageProcessor.hpp"
 #include <math.h>
-
+#include <string>
 imageProcessor::imageProcessor(){}
 
-std::vector<cv::KeyPoint> imageProcessor::blobDetection(cv::Mat &image){
+std::vector<cv::KeyPoint> imageProcessor::blobDetection(cv::Mat &image , int minArea=0){
 		// Setup SimpleBlobDetector parameters.
 	cv::SimpleBlobDetector::Params params;
 
+	// Supposing that a foreground human takes minimum one quarter of the total screen size
+if(minArea == 0)
+	minArea= image.rows*image.cols / 4;
+
 	params.filterByArea = true;
-	params.minArea = 300;
-	params.maxArea = 300000;
+	params.minArea = minArea;
+	params.maxArea = image.rows*image.cols / 2 ;
 
 	params.filterByCircularity = true;
 	params.minCircularity=0;
@@ -31,6 +35,60 @@ std::vector<cv::KeyPoint> imageProcessor::blobDetection(cv::Mat &image){
 	blobDetector->detect( image, keypoints);
 
 	return keypoints;
+}
+
+
+
+
+void imageProcessor::blobExtractor(cv::Mat image,std::vector<cv::KeyPoint> keypoints, std::string pathToSave, std::string naming){
+	/*
+	 Write extracted blobs to image files (png format) inside the pathToSave
+	 */
+		//Image writer PNG parameters.
+	std::vector<int> compression_params;
+	compression_params.push_back(CV_IMWRITE_PNG_COMPRESSION);
+	compression_params.push_back(3);
+
+	int blobCounter=0;
+	std::string imageFilename;
+
+		imageFilename = naming;
+
+
+	for (int i=0;i<keypoints.size();++i){
+		int size = keypoints[i].size;
+
+		int leftestX = keypoints[i].pt.x - size;
+		int uppermostY= keypoints[i].pt.y - size;
+		int rightestX = keypoints[i].pt.x + size;
+		int bottomY= keypoints[i].pt.y + size;
+
+		if (leftestX < 0)
+			leftestX =0;
+
+		if(rightestX > image.cols)
+			rightestX = image.cols;
+
+		if (uppermostY<0)
+			uppermostY = 0;
+
+		if (bottomY>image.rows)
+			bottomY   = image.rows;
+
+		int rectWidth = (rightestX - leftestX);
+		int rectHeight = (bottomY - uppermostY);
+
+		cv::Rect myRect= cvRect(leftestX,uppermostY,rectWidth,rectHeight);
+		cv::Mat croppedImage = image(myRect);
+
+			//write the image to a file
+		std::string filename =pathToSave+"/"+imageFilename+"Blob" + std::to_string(blobCounter++) +".png" ;
+		cv::imwrite(filename,croppedImage,compression_params);
+		std::cout<<"<--Writing blob number "<<blobCounter<<"-->"<<std::endl;
+	}
+
+	std::cout<<"\nSuccessfully written "<<blobCounter<<" blobs."<<std::endl;
+
 }
 
 

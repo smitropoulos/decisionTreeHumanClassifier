@@ -4,6 +4,6 @@
 
 #include <stdio.h>
 
-void processVideo(char* videoFilename);
+void processVideo(std::string videoFilename, std::string path);
 
 #endif /* backgroundSubtractor_hpp */
