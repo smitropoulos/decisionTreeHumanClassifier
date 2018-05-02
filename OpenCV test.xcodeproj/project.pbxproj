@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D66E5D92099CF720094F616 /* wizard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D66E5D72099CF720094F616 /* wizard.cpp */; };
 		7D826A5B208E3D1A009E563B /* imageLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D826A59208E3D1A009E563B /* imageLoader.cpp */; };
 		7D826A5E208F88AD009E563B /* imageProcessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D826A5C208F88AD009E563B /* imageProcessor.cpp */; };
 		7D8D96D42078BE6D0091EB78 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7D8D96D32078BE6D0091EB78 /* main.cpp */; };
 		7DCA19C92090E1BA00E61955 /* backgroundSubtractor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7DCA19C72090E1BA00E61955 /* backgroundSubtractor.cpp */; };
+		7DE9073F20966D5100BF6C5C /* tree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7DE9073D20966D5100BF6C5C /* tree.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -26,6 +28,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7D66E5D72099CF720094F616 /* wizard.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = wizard.cpp; sourceTree = "<group>"; };
+		7D66E5D82099CF720094F616 /* wizard.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = wizard.hpp; sourceTree = "<group>"; };
 		7D826A59208E3D1A009E563B /* imageLoader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = imageLoader.cpp; sourceTree = "<group>"; };
 		7D826A5A208E3D1A009E563B /* imageLoader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = imageLoader.hpp; sourceTree = "<group>"; };
 		7D826A5C208F88AD009E563B /* imageProcessor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = imageProcessor.cpp; sourceTree = "<group>"; };
@@ -34,6 +38,8 @@
 		7D8D96D32078BE6D0091EB78 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		7DCA19C72090E1BA00E61955 /* backgroundSubtractor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = backgroundSubtractor.cpp; sourceTree = "<group>"; };
 		7DCA19C82090E1BA00E61955 /* backgroundSubtractor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = backgroundSubtractor.hpp; sourceTree = "<group>"; };
+		7DE9073D20966D5100BF6C5C /* tree.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tree.cpp; sourceTree = "<group>"; };
+		7DE9073E20966D5100BF6C5C /* tree.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = tree.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,12 +73,16 @@
 			isa = PBXGroup;
 			children = (
 				7D826A59208E3D1A009E563B /* imageLoader.cpp */,
+				7D66E5D72099CF720094F616 /* wizard.cpp */,
+				7D66E5D82099CF720094F616 /* wizard.hpp */,
 				7D826A5A208E3D1A009E563B /* imageLoader.hpp */,
 				7DCA19C72090E1BA00E61955 /* backgroundSubtractor.cpp */,
 				7DCA19C82090E1BA00E61955 /* backgroundSubtractor.hpp */,
 				7D826A5C208F88AD009E563B /* imageProcessor.cpp */,
 				7D826A5D208F88AD009E563B /* imageProcessor.hpp */,
 				7D8D96D32078BE6D0091EB78 /* main.cpp */,
+				7DE9073D20966D5100BF6C5C /* tree.cpp */,
+				7DE9073E20966D5100BF6C5C /* tree.hpp */,
 			);
 			path = "OpenCV test";
 			sourceTree = "<group>";
@@ -133,9 +143,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D66E5D92099CF720094F616 /* wizard.cpp in Sources */,
 				7DCA19C92090E1BA00E61955 /* backgroundSubtractor.cpp in Sources */,
 				7D826A5E208F88AD009E563B /* imageProcessor.cpp in Sources */,
 				7D826A5B208E3D1A009E563B /* imageLoader.cpp in Sources */,
+				7DE9073F20966D5100BF6C5C /* tree.cpp in Sources */,
 				7D8D96D42078BE6D0091EB78 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

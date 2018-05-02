@@ -66,6 +66,6 @@ xcuserdata/
 !*.xcodeproj/xcshareddata/
 !*.xcworkspace/contents.xcworkspacedata
 /*.gcno
-
+*pbxproj
 
 # End of https://www.gitignore.io/api/c++,xcode
