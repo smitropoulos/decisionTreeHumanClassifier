@@ -8,6 +8,6 @@ Step 3: Enter the classifier.
 
 Step 4: Evaluate the classifier.
 
-![alt text](https://imgur.com/5pjWQQI)
+![](https://i.imgur.com/5pjWQQI.png)
 
-The complete dissertation can be found in https://www.researchgate.net/publication/322499866_Adaptive_computer_vision_algorithm_for_human_recognition_in_traffic_scenes
+The complete manuscript can be found in https://www.researchgate.net/publication/322499866_Adaptive_computer_vision_algorithm_for_human_recognition_in_traffic_scenes
