@@ -263,7 +263,6 @@ public:
 	}
 };
 
-
 class InputReader {
 private:
 	ifstream fin;
@@ -335,7 +334,7 @@ public:
 	}
 };
 
-int decTree(std::string trainFile, std::string testFile, std::string resultsFile, int resultsMode) {
+int decTree(std::string& trainFile, std::string& testFile, std::string& resultsFile, int resultsMode) {
 
 	string trainFileName = trainFile;
 	InputReader trainInputReader(trainFileName);
@@ -370,5 +369,3 @@ int decTree(std::string trainFile, std::string testFile, std::string resultsFile
 	}
 	return 0;
 }
-
-

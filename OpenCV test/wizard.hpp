@@ -6,14 +6,17 @@
 #include <iostream>
 #include <stack>
 
-static std::string path1,path2;
-static std::stack<std::string> stackOfPathsForClasses;
-static std::stack<int> stackOfNumberForClasses;
-static int classes=1;
-static int inputSelection=0;
-static float splitRatio=0.25;
+class params{
+public:
+	std::string path1,path2;
+	std::stack<std::string> stackOfPathsForClasses;
+	std::stack<int> stackOfNumberForClasses;
+	int numberOfClasses=1;
+	float splitRatio;
+};
 
-bool wizard(int argc);
+params wizard(int argc);
+
 
 
 #endif /* wizard_hpp */

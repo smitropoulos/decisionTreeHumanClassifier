@@ -37,9 +37,6 @@ if(minArea == 0)
 	return keypoints;
 }
 
-
-
-
 void imageProcessor::blobExtractor(cv::Mat image,std::vector<cv::KeyPoint> keypoints, std::string pathToSave, std::string naming){
 	/*
 	 Write extracted blobs to image files (png format) inside the pathToSave
@@ -90,7 +87,6 @@ void imageProcessor::blobExtractor(cv::Mat image,std::vector<cv::KeyPoint> keypo
 	std::cout<<"\nSuccessfully written "<<blobCounter<<" blobs."<<std::endl;
 
 }
-
 
 cv::Mat imageProcessor::removePadding(cv::Mat &im){
 	/*
@@ -196,8 +192,7 @@ int imageProcessor::autoRotationAngle(cv::Mat &im){
 	return angle;
 }
 
-
-void imageProcessor::rotateNoCrop(cv::Mat &im, cv::Mat &rotIm, double angle){
+void imageProcessor::rotateNoCrop(cv::Mat &im, cv::Mat &rotIm, const double angle){
 	/*
 	 Rotate the image without cropping. First the transformation(rotation) matrix is calculated, then a new, bigger cv::Mat is constructed.*/
 

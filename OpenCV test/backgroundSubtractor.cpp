@@ -14,7 +14,7 @@
 #include "imageProcessor.hpp"
 
 
-void processVideo(std::string videoFilename, std::string savePath) {
+void processVideo(std::string& videoFilename, std::string& savePath) {
 
 		// Global variables
 	cv::Mat frame; //current frame
