@@ -8,6 +8,6 @@ Step 3: Enter the classifier.
 
 Step 4: Evaluate the classifier.
 
-![](https://i.imgur.com/5pjWQQI.png)
+![](https://i.imgur.com/cfUv4RR.png)
 
 The complete manuscript can be found in https://www.researchgate.net/publication/322499866_Adaptive_computer_vision_algorithm_for_human_recognition_in_traffic_scenes
