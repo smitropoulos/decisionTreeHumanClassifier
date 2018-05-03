@@ -21,10 +21,6 @@ params wizard(int arg){
 //
 //	par.splitRatio = .2;
 //
-//
-//
-//
-//
 //	return par;
 //
 
