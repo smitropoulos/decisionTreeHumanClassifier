@@ -37,10 +37,6 @@ params wizard(int arg){
 		std::cin >> std::ws;
 		std::cin>>inputSelection;
 
-		while (std::cin.fail()) {	//check for type correctness.
-			std::cerr<<"You did not make a vaild choice. Please try again."<<std::endl;
-		}
-
 		if (inputSelection==1){
 			std::cout<<"Please provide the path to your video. "<<std::endl;
 			std::cin >> std::ws;
@@ -57,7 +53,9 @@ params wizard(int arg){
 			std::cin >> par.numberOfClasses;
 			while (std::cin.fail()) {	//check for type correctness.
 				std::cerr<<"You did not make a vaild choice. Please try again.\n"<<std::endl;
-				std::cin >> par.numberOfClasses;
+				std::cin >> std::ws;
+				par.numberOfClasses=getchar();
+//				std::cin >> par.numberOfClasses;
 				if (par.numberOfClasses>1){
 					std::cout<< "Class numbers will begin with "<<par.numberOfClasses<<"\n" <<std::endl;
 				}
@@ -86,6 +84,9 @@ params wizard(int arg){
 
 
 		}
+		else{std::cerr<<"Not valid input. Programme will now exit."<<std::endl;
+			exit(1);
+}
 	}
 	catch(...){
 		std::cerr<<"An exception has been caught. The programme will now exit"<<std::endl;
