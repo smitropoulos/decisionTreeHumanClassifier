@@ -8,8 +8,9 @@ params wizard(int arg){
 
 	int inputSelection=0;
 	params par;
-//
-//
+
+
+//	//debugging purposes
 //	par.path2 = "/Users/stefanosmitropoulos/Developer/Python/OpenCvTest/set";
 //
 //	par.stackOfPathsForClasses.push("/Users/stefanosmitropoulos/Developer/Python/OpenCvTest/car/");

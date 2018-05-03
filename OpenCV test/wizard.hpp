@@ -17,6 +17,4 @@ public:
 
 params wizard(int argc);
 
-
-
 #endif /* wizard_hpp */
