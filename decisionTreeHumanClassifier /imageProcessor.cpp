@@ -8,8 +8,9 @@ std::vector<cv::KeyPoint> imageProcessor::blobDetection(cv::Mat &image , int min
 	cv::SimpleBlobDetector::Params params;
 
 	// Supposing that a foreground human takes minimum one quarter of the total screen size
-if(minArea == 0)
-	minArea= image.rows*image.cols / 4;
+	if(minArea == 0){
+	minArea= image.rows*image.cols / 200;
+	}
 
 	params.filterByArea = true;
 	params.minArea = minArea;

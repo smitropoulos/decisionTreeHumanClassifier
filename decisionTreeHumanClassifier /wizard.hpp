@@ -13,6 +13,10 @@ public:
 	std::stack<int> stackOfNumberForClasses;
 	int numberOfClasses=1;
 	float splitRatio;
+	char delimeter;
+	std::string classifier;
+	int inputSelection;
+	bool watchOutputvideo;
 };
 
 params wizard(int argc);

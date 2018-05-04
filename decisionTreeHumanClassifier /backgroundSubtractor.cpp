@@ -12,9 +12,10 @@
  //Custom
 #include "backgroundSubtractor.hpp"
 #include "imageProcessor.hpp"
+#include "wizard.hpp"
 
 
-void processVideo(std::string& videoFilename, std::string& savePath) {
+void processVideo(std::string& videoFilename, std::string& savePath, params par) {
 
 		// Global variables
 	cv::Mat frame; //current frame
@@ -30,10 +31,12 @@ void processVideo(std::string& videoFilename, std::string& savePath) {
 
 	imageProcessor imProcessor;
 	int numberOfFrame=0;
+
+	if (par.watchOutputvideo){
 		//create GUI windows
 	cv::namedWindow("Frame");
 	cv::namedWindow("FG Mask MOG 2");
-
+	}
 		//create a Background Subtractor object
 		//BackgroundSubtractorMOG2(int history, float varThreshold, bool bShadowDetection=true)
 	pMOG2 = cv::createBackgroundSubtractorMOG2(2000,220,false);
@@ -65,11 +68,13 @@ void processVideo(std::string& videoFilename, std::string& savePath) {
 
 		imProcessor.blobExtractor(fgMaskMOG2, keypoints, savePath, naming);
 
+		if (par.watchOutputvideo){
 		imshow("Frame", frame);
 		imshow("FG Mask MOG 2", fgMaskMOG2);
 
 			//get the input from the keyboard
 		keyboard =cv::waitKey( 30 );
+		}
 	}
 		//delete capture object
 	capture.release();

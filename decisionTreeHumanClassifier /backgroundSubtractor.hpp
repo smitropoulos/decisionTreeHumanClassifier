@@ -3,7 +3,8 @@
 #define backgroundSubtractor_hpp
 
 #include <stdio.h>
+#include "wizard.hpp"
 
-void processVideo(std::string& videoFilename, std::string& path);
+void processVideo(std::string& videoFilename, std::string& savePath, params par);
 
 #endif /* backgroundSubtractor_hpp */
