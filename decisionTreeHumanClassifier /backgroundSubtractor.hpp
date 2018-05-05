@@ -5,6 +5,6 @@
 #include <stdio.h>
 #include "wizard.hpp"
 
-void processVideo(std::string& videoFilename, std::string& savePath, params par);
+void backgroundSubtractorProcessor(std::string& videoFilename, std::string& savePath, params par);
 
 #endif /* backgroundSubtractor_hpp */

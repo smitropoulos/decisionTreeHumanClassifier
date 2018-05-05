@@ -43,6 +43,9 @@ from sklearn.tree import DecisionTreeClassifier
 classifier = DecisionTreeClassifier(criterion = 'entropy', random_state = 0)
 classifier.fit(X_train, y_train)
 
+from sklearn.externals import joblib
+joblib.dump(clf, 'filename.pkl')
+
 # Predicting the Test set results
 y_pred = classifier.predict(X_test)
 

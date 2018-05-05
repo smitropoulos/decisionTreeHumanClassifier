@@ -9,14 +9,16 @@
 class params{
 public:
 	std::string path1,path2;
-	std::stack<std::string> stackOfPathsForClasses;
-	std::stack<int> stackOfNumberForClasses;
+	std::stack<std::string> stackOfPathsForClasses{};
+	std::stack<int> stackOfNumberForClasses{};
 	int numberOfClasses=1;
-	float splitRatio;
-	char delimeter;
+	float splitRatio=0.3;
+	char delimeter='\t';
 	std::string classifier;
-	int inputSelection;
-	bool watchOutputvideo;
+	int inputSelection{};
+	bool watchOutputvideo{};
+	std::string completeFilename,completeFilename2,completeFilename3;
+
 };
 
 params wizard(int argc);

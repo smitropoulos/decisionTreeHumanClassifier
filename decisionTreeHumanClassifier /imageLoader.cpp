@@ -39,7 +39,7 @@ std::vector<specimenImage> imageLoader::loadSpecimens(){
 std::vector<specimenImage> filepathVectorCompiler(std::stack<std::string> stackOfPathsForClasses,std::string ext, std::stack<int> stackOfNumberForClasses){
 
 	std::vector<specimenImage> filePaths;
-
+	std::cout<<stackOfNumberForClasses.size()<<std::endl;
 	while (stackOfNumberForClasses.size()>0){
 
 		imageLoader imgLoader(stackOfPathsForClasses.top(), ext, stackOfNumberForClasses.top() );

@@ -83,6 +83,8 @@ void imageProcessor::blobExtractor(cv::Mat image,std::vector<cv::KeyPoint> keypo
 		std::string filename =pathToSave+"/"+imageFilename+"Blob" + std::to_string(blobCounter++) +".png" ;
 		cv::imwrite(filename,croppedImage,compression_params);
 		std::cout<<"<--Writing blob number "<<blobCounter<<"-->"<<std::endl;
+		std::cout<<"<--Path: "<<filename<<"-->"<<std::endl;
+
 	}
 
 	std::cout<<"\nSuccessfully written "<<blobCounter<<" blobs."<<std::endl;

@@ -9,13 +9,13 @@
 	//C++
 #include <iostream>
 #include <string>
- //Custom
+	//Custom
 #include "backgroundSubtractor.hpp"
 #include "imageProcessor.hpp"
 #include "wizard.hpp"
 
 
-void processVideo(std::string& videoFilename, std::string& savePath, params par) {
+void backgroundSubtractorProcessor(std::string& videoFilename, std::string& savePath, params par) {
 
 		// Global variables
 	cv::Mat frame; //current frame
@@ -24,7 +24,7 @@ void processVideo(std::string& videoFilename, std::string& savePath, params par)
 	int keyboard=0; //input from keyboard
 
 
-	//Image writer PNG parameters.
+		//Image writer PNG parameters.
 	std::vector<int> compression_params;
 	compression_params.push_back(CV_IMWRITE_PNG_COMPRESSION);
 	compression_params.push_back(3);
@@ -33,9 +33,9 @@ void processVideo(std::string& videoFilename, std::string& savePath, params par)
 	int numberOfFrame=0;
 
 	if (par.watchOutputvideo){
-		//create GUI windows
-	cv::namedWindow("Frame");
-	cv::namedWindow("FG Mask MOG 2");
+			//create GUI windows
+		cv::namedWindow("Frame");
+		cv::namedWindow("FG Mask MOG 2");
 	}
 		//create a Background Subtractor object
 		//BackgroundSubtractorMOG2(int history, float varThreshold, bool bShadowDetection=true)
@@ -62,21 +62,20 @@ void processVideo(std::string& videoFilename, std::string& savePath, params par)
 
 		numberOfFrame++;
 
-		//Processing the foreground image.
+			//Processing the foreground image.
 		auto keypoints = imProcessor.blobDetection(fgMaskMOG2,0);
 		std::string naming = "frame"+std::to_string(numberOfFrame);
-
 		imProcessor.blobExtractor(fgMaskMOG2, keypoints, savePath, naming);
 
 		if (par.watchOutputvideo){
-		imshow("Frame", frame);
-		imshow("FG Mask MOG 2", fgMaskMOG2);
+			imshow("Frame", frame);
+			imshow("FG Mask MOG 2", fgMaskMOG2);
 
-			//get the input from the keyboard
-		keyboard =cv::waitKey( 30 );
+				//get the input from the keyboard
+			keyboard =cv::waitKey( 30 );
 		}
 	}
-		//delete capture object
+	//delete capture object
 	capture.release();
 	cv::destroyAllWindows();
 }
