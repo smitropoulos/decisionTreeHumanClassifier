@@ -11,7 +11,10 @@
 
 #include <stdio.h>
 #include "wizard.hpp"
+#include "opencv2/opencv.hpp"
+
 
 void classifierTrain(params& par);
+void classifierLive(cv::Mat tempImage);
 
 #endif /* classifierTrain_hpp */

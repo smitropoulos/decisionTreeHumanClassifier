@@ -6,8 +6,8 @@
 #include <iostream>
 #include <stack>
 
-class params{
-public:
+struct params{
+
 	std::string path1,path2;
 	std::stack<std::string> stackOfPathsForClasses{};
 	std::stack<int> stackOfNumberForClasses{};

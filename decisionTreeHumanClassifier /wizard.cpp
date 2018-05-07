@@ -35,7 +35,8 @@ params wizard(int arg){
 	try{
 		std::cout<<"#- Welcome to the GMM supervised classifier -#\n"<<
 		"* To enter the blob extractor from video please press 1\n"<<
-		"* To enter the classifier please press 2"<<std::endl;
+		"* To enter the classifier please press 2\n"<<
+		"* To enter the demo please press 3"<<std::endl;
 
 		std::getline(std::cin, temp);
 		par.inputSelection = std::stoi(temp);
@@ -95,6 +96,8 @@ params wizard(int arg){
 				par.delimeter = '\t';
 			}
 
+		}else if (par.inputSelection==3){
+			par.inputSelection=3;
 		}
 		else{
 			std::cerr<<"Not valid input. Programme will now exit."<<std::endl;

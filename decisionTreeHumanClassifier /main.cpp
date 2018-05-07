@@ -13,6 +13,11 @@ int main(int argc,const char* argv[]){
 	else if (par.inputSelection==2){
 		classifierTrain(par);
 	}
+	else if (par.inputSelection==3){
+		std::cout<<"Live demo engaged"<<std::endl;
+		backgroundSubtractorProcessor(0);
+
+	}
 
 		//simple tree -overfitting to 100%
 	if (par.delimeter=='\t'){

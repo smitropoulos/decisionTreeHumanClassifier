@@ -4,12 +4,17 @@
 imageProcessor::imageProcessor(){}
 
 std::vector<cv::KeyPoint> imageProcessor::blobDetection(cv::Mat &image , int minArea=0){
+
+	/*
+	 returns the keypoints of blobs in an images
+	 */
+	
 		// Setup SimpleBlobDetector parameters.
 	cv::SimpleBlobDetector::Params params;
 
-	// Supposing that a foreground human takes minimum one quarter of the total screen size
+		// Supposing that a foreground human takes minimum one quarter of the total screen size
 	if(minArea == 0){
-	minArea= image.rows*image.cols / 200;
+		minArea= image.rows*image.cols / 200;
 	}
 
 	params.filterByArea = true;
@@ -33,6 +38,7 @@ std::vector<cv::KeyPoint> imageProcessor::blobDetection(cv::Mat &image , int min
 
 		// Detect blobs.
 	std::vector<cv::KeyPoint> keypoints;
+	std::cout<<keypoints.size()<<std::endl;
 	blobDetector->detect( image, keypoints);
 
 	return keypoints;
@@ -43,6 +49,7 @@ void imageProcessor::blobExtractor(cv::Mat image,std::vector<cv::KeyPoint> keypo
 	 Write extracted blobs to image files (png format) inside the pathToSave
 	 */
 		//Image writer PNG parameters.
+	
 	std::vector<int> compression_params;
 	compression_params.push_back(CV_IMWRITE_PNG_COMPRESSION);
 	compression_params.push_back(3);
@@ -50,7 +57,7 @@ void imageProcessor::blobExtractor(cv::Mat image,std::vector<cv::KeyPoint> keypo
 	int blobCounter=0;
 	std::string imageFilename;
 
-		imageFilename = naming;
+	imageFilename = naming;
 
 
 	for (int i=0;i<keypoints.size();++i){
@@ -131,7 +138,8 @@ cv::Mat imageProcessor::removePadding(cv::Mat &im){
 			break;
 		}
 	}
-
+	cv::namedWindow("peos");
+	cv::imshow("peos", im);
 	for (int i=im.rows;i>0;--i){
 		for (int j=im.cols;j>0;--j){
 			xsum+=im.at<uchar>(i,j);
@@ -164,6 +172,8 @@ cv::Mat imageProcessor::removePadding(cv::Mat &im){
 	cv::Mat croppedImage = im (myROI);
 
 	return croppedImage;
+
+
 }
 
 int imageProcessor::autoRotationAngle(cv::Mat &im){
@@ -171,6 +181,7 @@ int imageProcessor::autoRotationAngle(cv::Mat &im){
 	/*
 	 Calculate the rotation angle needed. Assuming the object of interest resembles a human silhouette, the uppermost non-zero point will be the top of the head. With this in mind, the human to be upright, his head needs to be alligned to the y'y axis. This is exactly what this method does, calculates that angle.
 	 */
+
 	bool flag = false;
 	double const PI = 3.14159265;
 	static int y=0;
@@ -197,7 +208,8 @@ int imageProcessor::autoRotationAngle(cv::Mat &im){
 
 void imageProcessor::rotateNoCrop(cv::Mat &im, cv::Mat &rotIm, const double angle){
 	/*
-	 Rotate the image without cropping. First the transformation(rotation) matrix is calculated, then a new, bigger cv::Mat is constructed.*/
+	 Rotate the image without cropping. First the transformation(rotation) matrix is calculated, then a new, bigger cv::Mat is constructed.
+	 */
 
 	{
 	cv::Point2f center(im.cols/2.0, im.rows/2.0);
