@@ -78,7 +78,7 @@ void classifierTrain(params& par){
 
 				//double start_s=clock();
 
-			if (++processingIntervalsCounter%100==0){
+			if (++processingIntervalsCounter%100==0){		//output processing to the screen to show it's running
 				std::cout<<"Processing...\r";
 			}
 			cv::Mat tempImage=cv::imread(specimen.m_imagePath);
@@ -149,6 +149,98 @@ void classifierTrain(params& par){
 		//	g=g/filepaths.size();
 		//	std::cout<<"Average time of loop: "<<g<<std::endl;
 
-		
 
+
+}
+
+void classifierLive(cv::Mat tempImage2){
+	
+	/*
+	 takes an image, extracts its blobs, and then creates a text file with the processed blobs.
+	 */
+
+	std::string filename = "pythonClassifier.py live";
+	std::string command = "./";
+	std::string str = command+filename;
+	const char *cstr = str.c_str();
+
+
+	auto tempImage=cv::imread("/Users/stefanosmitropoulos/Developer/C++ Programming/decisionTreeHumanClassifier /build/Debug/demo_real_time/temp.png",1);
+	
+	imageProcessor impro;
+
+	cv::SimpleBlobDetector::Params params;
+
+
+	params.filterByArea = true;
+	params.minArea = 300;
+	params.maxArea = 300000000;
+	params.filterByCircularity = true;
+	params.minCircularity=0;
+	params.maxCircularity=1;
+
+	params.filterByColor = true;
+	params.blobColor = 255;
+
+	params.filterByConvexity = true;
+	params.minConvexity=0;
+	params.maxConvexity=1;
+
+
+		// Set up detector with the above parameters. As of now there is not need to alter them.
+	cv::Ptr<cv::SimpleBlobDetector> blobDetector = cv::SimpleBlobDetector::create(params);
+
+		// Detect blobs.
+	std::vector<cv::KeyPoint> keypoints;
+
+	std::string completeFilename = static_cast<std::string>("/Users/stefanosmitropoulos/Developer/C++ Programming/decisionTreeHumanClassifier /build/Debug/demo_real_time/ouput")+".txt";		//train set
+	std::ofstream file(completeFilename);  //output text file
+
+	blobDetector->detect(tempImage, keypoints);
+
+	for (int i=0;i<keypoints.size();++i){
+		int size = keypoints[i].size;
+
+		int leftestX = keypoints[i].pt.x - size;
+		int uppermostY= keypoints[i].pt.y - size;
+		int rightestX = keypoints[i].pt.x + size;
+		int bottomY= keypoints[i].pt.y + size;
+
+		if (leftestX < 0)
+			leftestX =0;
+
+		if(rightestX > tempImage.cols)
+			rightestX = tempImage.cols;
+
+		if (uppermostY<0)
+			uppermostY = 0;
+
+		if (bottomY>tempImage.rows)
+			bottomY   = tempImage.rows;
+
+		int rectWidth = (rightestX - leftestX);
+		int rectHeight = (bottomY - uppermostY);
+
+		cv::Rect myRect= cvRect(leftestX,uppermostY,rectWidth,rectHeight);
+		cv::Mat croppedImage = tempImage(myRect);		//blob is created
+
+		impro.removePadding(croppedImage);
+		impro.rotateNoCrop(croppedImage, croppedImage, impro.autoRotationAngle(croppedImage));
+		cv::resize(croppedImage,croppedImage,cv::Size(150,150) ,0,0); //resizing as for all the rows to have the same size.
+		croppedImage=croppedImage.reshape(0,1);	//reshaping the image to vector form. (1 row, row*cols columns) keeping the same colour scheme.
+
+			//Access all the elements of the mat.data
+		for (int i=0;i<tempImage.cols;i++){
+			if(static_cast<int>(*tempImage.data++) > 1){ //pseudo thresholding too.
+				file<<1;
+			}else{
+				file<<0;
+			}
+		}
+
+		system(cstr);
+
+	}
+
+	//file.flush();
 }
