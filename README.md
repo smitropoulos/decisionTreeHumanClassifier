@@ -22,7 +22,7 @@ Step 4: Train and evaluate the classifier.
 #### If you want to use the python script, make sure it is in your executable's dir and is chmod +x
 
 
-## _An overview_
+## _An overview of the ML workflow_
 ![](https://i.imgur.com/cfUv4RR.png)
 
 The complete manuscript can be found in https://www.researchgate.net/publication/322499866_Adaptive_computer_vision_algorithm_for_human_recognition_in_traffic_scenes
