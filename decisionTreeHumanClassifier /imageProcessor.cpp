@@ -3,22 +3,19 @@
 #include <string>
 imageProcessor::imageProcessor(){}
 
-std::vector<cv::KeyPoint> imageProcessor::blobDetection(cv::Mat &image , int minArea=0){
-
+void imageProcessor::blobExtractor(cv::Mat image, std::string pathToSave, std::string naming){
 	/*
-	 returns the keypoints of blobs in an images
+	 Write extracted blobs to image files (png format) inside the pathToSave
 	 */
-	
+		//Image writer PNG parameters.
+
 		// Setup SimpleBlobDetector parameters.
 	cv::SimpleBlobDetector::Params params;
 
 		// Supposing that a foreground human takes minimum one quarter of the total screen size
-	if(minArea == 0){
-		minArea= image.rows*image.cols / 200;
-	}
 
 	params.filterByArea = true;
-	params.minArea = minArea;
+	params.minArea = image.rows*image.cols / 200;
 	params.maxArea = image.rows*image.cols / 2 ;
 
 	params.filterByCircularity = true;
@@ -38,18 +35,8 @@ std::vector<cv::KeyPoint> imageProcessor::blobDetection(cv::Mat &image , int min
 
 		// Detect blobs.
 	std::vector<cv::KeyPoint> keypoints;
-	std::cout<<keypoints.size()<<std::endl;
 	blobDetector->detect( image, keypoints);
 
-	return keypoints;
-}
-
-void imageProcessor::blobExtractor(cv::Mat image,std::vector<cv::KeyPoint> keypoints, std::string pathToSave, std::string naming){
-	/*
-	 Write extracted blobs to image files (png format) inside the pathToSave
-	 */
-		//Image writer PNG parameters.
-	
 	std::vector<int> compression_params;
 	compression_params.push_back(CV_IMWRITE_PNG_COMPRESSION);
 	compression_params.push_back(3);
@@ -58,7 +45,6 @@ void imageProcessor::blobExtractor(cv::Mat image,std::vector<cv::KeyPoint> keypo
 	std::string imageFilename;
 
 	imageFilename = naming;
-
 
 	for (int i=0;i<keypoints.size();++i){
 		int size = keypoints[i].size;
