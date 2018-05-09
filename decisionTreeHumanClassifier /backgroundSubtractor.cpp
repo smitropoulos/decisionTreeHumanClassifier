@@ -61,12 +61,9 @@ void backgroundSubtractorProcessor(const std::string& videoFilename, const std::
 		pMOG2->apply(frame, fgMaskMOG2);
 
 
-			//Processing the foreground image.
-		auto keypoints = imProcessor.blobDetection(fgMaskMOG2,0);
-
 		numberOfFrame++;
 		std::string naming = "frame"+std::to_string(numberOfFrame);
-		imProcessor.blobExtractor(fgMaskMOG2, keypoints, savePath, naming);
+		imProcessor.blobExtractor(fgMaskMOG2, savePath, naming);
 		
 
 		if (par.watchOutputvideo){
