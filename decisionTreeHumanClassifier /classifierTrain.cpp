@@ -242,5 +242,5 @@ void classifierLive(cv::Mat tempImage2){
 
 	}
 
-	//file.flush();
+	file.flush();
 }

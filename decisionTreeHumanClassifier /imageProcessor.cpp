@@ -15,7 +15,9 @@ void imageProcessor::blobExtractor(cv::Mat image, std::string pathToSave, std::s
 		// Supposing that a foreground human takes minimum one quarter of the total screen size
 
 	params.filterByArea = true;
-	params.minArea = image.rows*image.cols / 200;
+	//params.minArea = image.rows*image.cols / 200;
+	params.minArea = 200;
+
 	params.maxArea = image.rows*image.cols / 2 ;
 
 	params.filterByCircularity = true;
@@ -75,12 +77,12 @@ void imageProcessor::blobExtractor(cv::Mat image, std::string pathToSave, std::s
 			//write the image to a file
 		std::string filename =pathToSave+"/"+imageFilename+"Blob" + std::to_string(blobCounter++) +".png" ;
 		cv::imwrite(filename,croppedImage,compression_params);
-		std::cout<<"<--Writing blob number "<<blobCounter<<"-->"<<std::endl;
-		std::cout<<"<--Path: "<<filename<<"-->"<<std::endl;
+		//std::cout<<"<--Writing blob number "<<blobCounter<<"-->"<<std::endl;
+		//std::cout<<"<--Path: "<<filename<<"-->"<<std::endl;
 
 	}
 
-	std::cout<<"\nSuccessfully written "<<blobCounter<<" blobs."<<std::endl;
+	//std::cout<<"\nSuccessfully written "<<blobCounter<<" blobs."<<std::endl;
 
 }
 
