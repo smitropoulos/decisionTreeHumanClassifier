@@ -19,6 +19,8 @@ int main(int argc,const char* argv[]){
 
 	}
 
+
+	
 		//simple tree -overfitting to 100%
 	if (par.delimeter=='\t'){
 		std::cout<<"\n\nSimple decision tree algorithm - tendency to overfit\n"<<std::endl;
@@ -33,7 +35,6 @@ int main(int argc,const char* argv[]){
 	std::string str = command+filename;
 	const char *cstr = str.c_str();
 	system(cstr);
-
 
 }
 
